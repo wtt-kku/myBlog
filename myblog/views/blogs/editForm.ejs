@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('../layout')%>
+    <br />
+    <% if (locals.errors) { %>
+    <ul class="alert alert-danger">
+      <% Object.values(errors).forEach(function(error){ %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+    <% } %>
+    <div class="py-2"><h2>แก้ไขบทความ</h2></div>
+    <form action="/blogs/update" method="post">
+      <div class="from-group">
+        <hr />
+        <label for="">ID</label>
+        <input
+          type="text"
+          name="id"
+          id="id"
+          class="form-control"
+          value="<%=blog._id%>" disabled
+        />
+      </div>
+      <div class="from-group">
+        <hr />
+        <label for="">ชื่อบทความ</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="form-control"
+          value="<%=blog.title%>"
+        />
+      </div>
+      <div class="from-group">
+        <label for="">ผู้เขียน</label>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          class="form-control"
+          value="<%=blog.author%>"
+        />
+      </div>
+      <div class="from-group">
+        <label for="">หมวดหมู่</label>
+        <select name="category" id="category" class="form-control">
+          <option value="นิยาย" 
+          <%
+          if (blog.category=="นิยาย"){ %>
+            selected
+            <% } %>
+          
+          >นิยาย</option>
+          <option value="สาระคดี"
+          
+          <%
+          if (blog.category=="สาระคดี"){ %>
+            selected
+            <% } %>
+            >สาระคดี</option>
+        </select>
+      </div>
+      <div class="py-4">
+        <input type="submit" class="btn btn-primary btn-lg" value="บันทึก" />
+      </div>
+    </form>
+  </body>
+</html>

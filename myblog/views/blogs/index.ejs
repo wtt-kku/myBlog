@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WTT</title>
+  </head>
+  <body>
+    <%- include('../layout')%>
+    <div class="py-2">
+      <div class="float-right">
+        <a class="btn btn-success" href="/blogs/add">
+          <i class="fas fa-plus"> </i> เขียนบทความ</a
+        >
+      </div>
+      <br />
+    </div>
+    <div class="py-4">
+      <h2>บทความทั้งหมด</h2>
+    </div>
+
+    <% Object.values(blogs).forEach(function(blog){%>
+    <h4><%=blog.title%></h4>
+    <h6><%=blog.category%> <%=blog.author%></h6>
+    <a href="/blogs/edit/<%=blog._id%>">แก้ไข</a>
+    <a
+      onclick="return confirm('ต้องการยืนยันการลบ ?')"
+      href="/blogs/delete/<%=blog._id%>"
+      >ลบ</a
+    >
+    <hr />
+
+    <%})%>
+  </body>
+</html>
