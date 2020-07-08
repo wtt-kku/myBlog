@@ -45,7 +45,7 @@ exports.submitForm = function (req, res, next) {
   if (!result.isEmpty()) {
     //response validate data to register.ejs
     //กรณีป้อนไม่ครบ
-    res.render("blogs/addForm", {
+    res.render("/blogs/addForm", {
       errors: errors,
     });
   } else {
@@ -56,6 +56,31 @@ exports.submitForm = function (req, res, next) {
       category: req.body.category,
     });
     Blogs.createBlog(data, function (err, callback) {
+      if (err) console.log(err);
+      res.redirect("/blogs");
+    });
+  }
+};
+
+exports.updateForm = function (req, res, next) {
+  const result = validationResult(req);
+  var errors = result.errors;
+  for (var key in errors) {
+    console.log(errors[key].value);
+  }
+  if (!result.isEmpty()) {
+    //response validate data to register.ejs
+    //กรณีป้อนไม่ครบ
+    res.redirect("/blogs");
+  } else {
+    //กรณีป้อนครบ
+    const data = new Blogs({
+      id: req.body.id,
+      title: req.body.title,
+      author: req.body.author,
+      category: req.body.category,
+    });
+    Blogs.updateBlog(data, function (err, callback) {
       if (err) console.log(err);
       res.redirect("/blogs");
     });

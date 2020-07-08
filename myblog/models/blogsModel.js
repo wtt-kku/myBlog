@@ -45,3 +45,21 @@ module.exports.DeleteBlog = function (id, callback) {
 module.exports.getBlogId = function (id, callback) {
   Blogs.findOne({ _id: id }, callback);
 };
+
+module.exports.updateBlog = function (data, callback) {
+  var query = {
+    _id: data.id,
+  };
+  Blogs.findByIdAndUpdate(
+    query,
+    {
+      $set: {
+        title: data.title,
+        author: data.author,
+        category: data.category,
+      },
+    },
+    { new: true },
+    callback
+  );
+};

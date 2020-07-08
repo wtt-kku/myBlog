@@ -20,4 +20,13 @@ router.post(
   blogController.submitForm
 );
 
+router.post(
+  "/update",
+  [
+    check("title", "กรุณาป้อนชื่อบทความ").not().isEmpty(),
+    check("author", "กรุณาป้อนชื่อผู้เขียน").not().isEmpty(),
+  ],
+  blogController.updateForm
+);
+
 module.exports = router;
