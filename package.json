@@ -10,10 +10,11 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
-    "express-validator": "^6.6.0",
+    "express-validator": "^6.10.0",
     "http-errors": "~1.6.3",
-    "mongodb": "^3.5.9",
-    "mongoose": "^5.9.20",
+    "mongodb": "^3.6.5",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^5.12.2",
     "morgan": "~1.9.1"
   }
 }
